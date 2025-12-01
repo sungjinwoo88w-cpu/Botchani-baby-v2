@@ -42,7 +42,7 @@ module.exports = {
         Authorization: "Client-ID 137256035dcfdcc"} }   );
         const imgurLink = response.data?.data?.link;
         if (!imgurLink) throw new Error("Imgur upload failed");  try {
-        const uploadResponse = await axios.post(`${apiUrl}/api/album/add`, {  category,  videoUrl: imgurLink,  });
+        const uploadResponse = await axios.post(`${apiUrl}/api/add`, {  category,  videoUrl: imgurLink,  });
         return api.sendMessage(uploadResponse.data.message, event.threadID, event.messageID);  } catch (error) {
         return api.sendMessage(`Failed to upload video.\n${error.response?.data?.error || error.message}`, event.threadID, event.messageID);   }    } catch (error) {
         return api.sendMessage(`Failed to upload to Imgur.\n${error.message}`, event.threadID, event.messageID);   }
